@@ -5,13 +5,21 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Creating virtual environment and installing dependencies...'
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv  # Create a virtual environment
+                    source venv/bin/activate  # Activate the virtual environment
+                    pip install --upgrade pip  # Upgrade pip to the latest version
+                    pip install -r requirements.txt  # Install dependencies from requirements.txt
+                '''
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'python3 -m unittest discover -s .'
+                sh '''
+                    source venv/bin/activate  # Activate the virtual environment
+                    python3 -m unittest discover -s .
+                '''
             }
         }
         stage('Deploy') {
