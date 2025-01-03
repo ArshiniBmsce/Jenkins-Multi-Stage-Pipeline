@@ -8,10 +8,7 @@ pipeline {
                 sh '''
                     apt-get update -y
                     apt-get install -y python3.11-venv  # Install the required package
-                    python3 -m venv venv  # Create the virtual environment
-                    bash -c "source venv/bin/activate"  # Use bash to activate the virtual environment
-                    pip install --upgrade pip  # Upgrade pip
-                    pip install -r requirements.txt  # Install dependencies
+                    apt-get install python3-flask
                 '''
             }
         }
@@ -19,7 +16,6 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 sh '''
-                    source venv/bin/activate  # Activate the virtual environment
                     python3 -m unittest discover -s .
                 '''
             }
