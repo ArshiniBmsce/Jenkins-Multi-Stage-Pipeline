@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Creating virtual environment and installing dependencies...'
-                sh 'python3 -m venv venv'
-                sh './venv/bin/pip install -r requirements.txt' // Assuming you have a requirements.txt file
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Test') {
