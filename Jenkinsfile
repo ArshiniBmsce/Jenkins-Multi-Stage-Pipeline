@@ -6,10 +6,12 @@ pipeline {
             steps {
                 echo 'Creating virtual environment and installing dependencies...'
                 sh '''
-                    python3 -m venv venv  # Create a virtual environment
-                    source venv/bin/activate  # Activate the virtual environment
-                    pip install --upgrade pip  # Upgrade pip to the latest version
-                    pip install -r requirements.txt  # Install dependencies from requirements.txt
+                    apt-get update -y
+                    apt-get install -y python3.11-venv  # Install the required package
+                    python3 -m venv venv  # Create the virtual environment
+                    bash -c "source venv/bin/activate"  # Use bash to activate the virtual environment
+                    pip install --upgrade pip  # Upgrade pip
+                    pip install -r requirements.txt  # Install dependencies
                 '''
             }
         }
