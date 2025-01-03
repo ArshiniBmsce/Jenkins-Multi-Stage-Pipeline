@@ -5,11 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Creating virtual environment and installing dependencies...'
-                sh '''
-                    apt-get update -y
-                    apt-get install -y python3.11-venv  # Install the required package
-                    apt-get install python3-flask
-                '''
             }
         }
         stage('Test') {
